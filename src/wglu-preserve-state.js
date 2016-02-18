@@ -71,7 +71,7 @@ function WGLUPreserveGLState(gl, bindings, callback) {
     switch (binding) {
       case gl.TEXTURE_BINDING_2D:
       case gl.TEXTURE_BINDING_CUBE_MAP:
-        var textureUnit = bindings[i++];
+        var textureUnit = bindings[++i];
         if (textureUnit < gl.TEXTURE0 || textureUnit > gl.TEXTURE31) {
           console.error("TEXTURE_BINDING_2D or TEXTURE_BINDING_CUBE_MAP must be followed by a valid texture unit");
           boundValues.push(null, null);
@@ -123,14 +123,14 @@ function WGLUPreserveGLState(gl, bindings, callback) {
         gl.bindRenderbuffer(gl.RENDERBUFFER, boundValue);
         break;
       case gl.TEXTURE_BINDING_2D:
-        var textureUnit = bindings[i++];
+        var textureUnit = bindings[++i];
         if (textureUnit < gl.TEXTURE0 || textureUnit > gl.TEXTURE31)
           break;
         gl.activeTexture(textureUnit);
         gl.bindTexture(gl.TEXTURE_2D, boundValue);
         break;
       case gl.TEXTURE_BINDING_CUBE_MAP:
-        var textureUnit = bindings[i++];
+        var textureUnit = bindings[++i];
         if (textureUnit < gl.TEXTURE0 || textureUnit > gl.TEXTURE31)
           break;
         gl.activeTexture(textureUnit);
